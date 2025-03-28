@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Attendance</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: Arial, sans-serif; background: #f5f7fa; text-align: center; margin: 0; padding: 20px; }
+    .container { width: 60%; margin: 20px auto; background: #fff; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { padding: 12px; border: 1px solid #ccc; }
+    th { background: #007BFF; color: #fff; }
+    tr:nth-child(even) { background: #f2f2f2; }
+    a { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #007BFF; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>My Attendance</h1>
+  <div class="container">
+      <table>
+        <tr>
+          <th>Class Name</th>
+          <th>Present Count</th>
+          <th>Total Classes</th>
+          <th>Attendance %</th>
+        </tr>
+        <tr>
+          <td>{{ class_name }}</td>
+          <td>{{ present_count }}</td>
+          <td>{{ total_classes }}</td>
+          <td>{{ percentage }}%</td>
+        </tr>
+      </table>
+      <p>No attendance records found.</p>
+  </div>
+  <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

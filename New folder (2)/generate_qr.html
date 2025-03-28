@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Generate QR Code</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+  <style>
+    body { background: #f5f7fa; font-family: 'Montserrat', sans-serif; margin: 0; padding: 20px; text-align: center; }
+    .container { max-width: 500px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    select, input {
+      padding: 10px; width: 80%; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px; background: #ffcc00; border: none; border-radius: 5px; cursor: pointer;
+      font-weight: 600; transition: background 0.3s;
+    }
+    button:hover { background: #e6b800; }
+    a { display: inline-block; margin-top: 20px; text-decoration: none; color: #2a5298; font-weight: 600; }
+    img { margin-top: 20px; max-width: 100%; border-radius: 10px; }
+    .flash { background: #ff4d4d; color: #fff; padding: 8px; border-radius: 5px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Generate QR Code</h1>
+    <form method="POST">
+      <select name="class_id" required>
+        <option value="">Select Class</option>
+        <option value="{{ cls.id }}" {% if selected_class == cls.id|string %} selected {% endif %}>
+          {{ cls.class_name }}
+        </option>
+      </select><br>
+      <input type="text" name="attendance_date" placeholder="Attendance Date (YYYY-MM-DD)" value="{{ attendance_date if attendance_date else '' }}" required><br>
+      <button type="submit">Generate</button>
+    </form>
+      <h3>QR Code for Class ID {{ selected_class }} on {{ attendance_date }}</h3>
+      <img src="data:image/png;base64,{{ qr_code_img }}" alt="QR Code">
+    <br>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+  </div>
+</body>
+</html>
